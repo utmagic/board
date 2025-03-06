@@ -42,7 +42,7 @@ export default function RootLayout({
                 />
                 <div className="flex flex-col">
                   <span className="text-xl font-bold leading-tight">GLOBAL</span>
-                  <span className="text-sm leading-tight">한화그룹의 뿌리</span>
+                  <span className="text-sm leading-tight">(주)한화 소통방</span>
                 </div>
               </Link>
               <div className="space-x-6">
