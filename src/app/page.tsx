@@ -5,7 +5,7 @@ export default function Home() {
     <div className="flex flex-col items-center">
       <div className="max-w-4xl w-full text-center my-12">
         <h1 className="text-4xl font-bold mb-6 text-orange-700">
-          🗣️ 행복한 소통의 공간, 행복소통방에 오신 것을 환영합니다! 💬
+          🗣️ 행복한 소통의 공간, 글로벌 소통 공간에 오신 것을 환영합니다! 💬
         </h1>
         <p className="text-xl text-gray-600 mb-8">
           자유롭게 의견을 나누고 정보를 공유하는 공간입니다.

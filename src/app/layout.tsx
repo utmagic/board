@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "행복소통방 - (주)한화 글로벌",
+  title: "GLOBAL Community - (주)한화 글로벌",
   description: "Next.js로 만든 간단한 게시판 웹사이트",
 };
 
@@ -41,7 +41,7 @@ export default function RootLayout({
                   className="text-white"
                 />
                 <div className="flex flex-col">
-                  <span className="text-xl font-bold leading-tight">행복소통방</span>
+                  <span className="text-xl font-bold leading-tight">GLOBAL Community</span>
                   <span className="text-sm leading-tight">(주)한화 글로벌</span>
                 </div>
               </Link>
@@ -91,7 +91,7 @@ export default function RootLayout({
         </main>
         <footer className="bg-orange-50 border-t border-orange-100 mt-8">
           <div className="container mx-auto px-4 py-6 text-center text-orange-700">
-            <p>© 2024 행복소통방 - (주)한화 글로벌. All rights reserved.</p>
+            <p>© 2024 GLOBAL Community - (주)한화 글로벌. All rights reserved.</p>
           </div>
         </footer>
       </body>
