@@ -25,7 +25,7 @@ try {
   // 외래 키 제약 조건 활성화
   db.pragma('foreign_keys = ON');
   
-  // 테이블 생성
+  // 게시글 테이블 생성
   db.exec(`
     CREATE TABLE IF NOT EXISTS posts (
       id TEXT PRIMARY KEY,
@@ -37,10 +37,24 @@ try {
     )
   `);
   
-  // 초기 데이터 삽입 (데이터베이스가 비어있을 때만)
-  const count = db.prepare('SELECT COUNT(*) as count FROM posts').get() as { count: number };
+  // 사용자 테이블 생성
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS users (
+      id TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      email TEXT UNIQUE NOT NULL,
+      password TEXT,
+      image TEXT,
+      provider TEXT,
+      createdAt TEXT NOT NULL,
+      updatedAt TEXT NOT NULL
+    )
+  `);
   
-  if (count.count === 0) {
+  // 초기 데이터 삽입 (데이터베이스가 비어있을 때만)
+  const postCount = db.prepare('SELECT COUNT(*) as count FROM posts').get() as { count: number };
+  
+  if (postCount.count === 0) {
     const initialPosts = [
       {
         id: '1',
@@ -87,8 +101,42 @@ try {
     });
     
     insertMany(initialPosts);
-    console.log('데이터베이스 초기화 완료');
+    console.log('게시글 데이터 초기화 완료');
   }
+  
+  // 초기 관리자 계정 생성 (사용자 테이블이 비어있을 때만)
+  const userCount = db.prepare('SELECT COUNT(*) as count FROM users').get() as { count: number };
+  
+  if (userCount.count === 0) {
+    // 실제 환경에서는 bcrypt로 해싱된 비밀번호를 사용해야 합니다.
+    // 여기서는 예시로 평문 비밀번호를 사용합니다.
+    const adminUser = {
+      id: '1',
+      name: '관리자',
+      email: 'admin@example.com',
+      password: 'admin123', // 실제 구현에서는 해싱된 비밀번호를 사용해야 합니다
+      provider: 'email',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    
+    db.prepare(`
+      INSERT INTO users (id, name, email, password, provider, createdAt, updatedAt)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      adminUser.id,
+      adminUser.name,
+      adminUser.email,
+      adminUser.password,
+      adminUser.provider,
+      adminUser.createdAt,
+      adminUser.updatedAt
+    );
+    
+    console.log('관리자 계정 초기화 완료');
+  }
+  
+  console.log('데이터베이스 초기화 완료');
 } catch (error) {
   console.error('데이터베이스 설정 오류:', error);
   throw new Error('데이터베이스 설정 중 오류가 발생했습니다.');
