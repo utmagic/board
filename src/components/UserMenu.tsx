@@ -24,32 +24,17 @@ export default function UserMenu() {
   }
 
   if (!session) {
-    return (
-      <div className="flex space-x-2">
-        <Link
-          href="/login"
-          className="bg-orange-100 hover:bg-orange-200 text-orange-800 px-4 py-2 rounded-md transition-colors"
-        >
-          로그인
-        </Link>
-        <Link
-          href="/register"
-          className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md transition-colors"
-        >
-          회원가입
-        </Link>
-      </div>
-    );
+    return null; // 로그인되지 않은 경우 아무것도 표시하지 않음
   }
 
   return (
     <div className="relative">
       <button
         onClick={toggleMenu}
-        className="flex items-center space-x-2 focus:outline-none"
+        className="flex items-center space-x-2 focus:outline-none group"
       >
         <div className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded-full overflow-hidden bg-orange-200">
+          <div className="h-8 w-8 rounded-full overflow-hidden bg-orange-200 border-2 border-white">
             {session.user.image ? (
               <Image
                 src={session.user.image}
@@ -64,7 +49,7 @@ export default function UserMenu() {
               </div>
             )}
           </div>
-          <span className="text-white">{session.user.name}</span>
+          <span className="text-white text-sm font-medium">{session.user.name}</span>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -80,6 +65,9 @@ export default function UserMenu() {
             clipRule="evenodd"
           />
         </svg>
+        <span className="absolute -bottom-8 right-0 bg-white text-orange-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md">
+          계정 관리
+        </span>
       </button>
 
       {isMenuOpen && (
