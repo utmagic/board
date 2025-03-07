@@ -155,7 +155,7 @@ export default function EditPostPage(props: EditPostPageProps) {
         </div>
         <Link 
           href={`/posts/${postId}?t=${timestamp}`}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md inline-block mt-4"
+          className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md inline-block mt-4 transition-colors"
         >
           게시글로 돌아가기
         </Link>
@@ -166,7 +166,7 @@ export default function EditPostPage(props: EditPostPageProps) {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-6">
-        <Link href={`/posts/${postId}?t=${timestamp}`} className="text-blue-600 hover:underline flex items-center">
+        <Link href={`/posts/${postId}?t=${timestamp}`} className="text-orange-600 hover:text-orange-800 hover:underline flex items-center transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
           </svg>
@@ -190,7 +190,7 @@ export default function EditPostPage(props: EditPostPageProps) {
                 value={post.title}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
             
@@ -205,7 +205,7 @@ export default function EditPostPage(props: EditPostPageProps) {
                 value={post.author}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
             
@@ -220,7 +220,7 @@ export default function EditPostPage(props: EditPostPageProps) {
                 onChange={handleChange}
                 required
                 rows={10}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"
               />
             </div>
             
@@ -228,14 +228,14 @@ export default function EditPostPage(props: EditPostPageProps) {
               <button
                 type="button"
                 onClick={() => router.back()}
-                className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md mr-2"
+                className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md mr-2 transition-colors"
                 disabled={isSubmitting}
               >
                 취소
               </button>
               <button
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md transition-colors"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? '저장 중...' : '저장하기'}
